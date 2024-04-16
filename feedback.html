@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-    <form name="myform" action="" method="">
+    <form id="feedbackForm" name="myform" action="http://127.0.0.1:5500/PBL-main/feedbackcomp.html" method="POST">
         <h1>FEEDBACK FORM</h1>
         <table>
             <tr>
@@ -102,9 +102,26 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" name="submit" value="Submit"><h2><a href="feedbackcomp.html"></a></h2></td>
+                <td><input type="submit" name="submit" value="Submit"></td>
             </tr>
         </table>
     </form>
+
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            var form = document.forms["myform"];
+            var fname = form["fname"].value;
+            var lname = form["lname"].value;
+            var email = form["email"].value;
+            var service = form["service"].value;
+            var rating = form["rating"].value;
+            var comments = form["comments"].value;
+
+            if (fname === "" || lname === "" || email === "" || service === "---Select---" || rating === "" || comments === "") {
+                alert("Fill the feedback form first");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
 </body>
 </html>
